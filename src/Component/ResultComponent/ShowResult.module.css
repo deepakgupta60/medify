@@ -1,0 +1,13 @@
+.show_result{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: linear-gradient(81deg, #E7F0FF 9.01%, rgba(232, 241, 255, 0.47) 89.11%);
+}
+
+.centre_card
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+}

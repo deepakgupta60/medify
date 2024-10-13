@@ -1,0 +1,45 @@
+.top_header{
+    background-color: var(--main-primary);
+    color: white;
+    padding: 5px 0px
+}
+
+.top_header_heading
+{
+    font-size: 12px !important;
+}
+
+.main_header
+{
+    color: var(--main-tertiary) !important;
+}
+.booking_button
+{
+    background-color: var(--main-primary) !important;
+    margin-left: 20px !important;
+    color: white !important; 
+    border-radius: 10px !important;
+}
+.top_menu_header
+{
+    background-color: var(--main-primary);
+    box-shadow: none !important;
+
+}
+
+.main_header_button{
+
+    font-family: "Poppins", sans-serif !important;
+    font-size: 13px !important;
+    text-transform: capitalize !important;
+}
+.main_header_button:hover
+{
+    background-color: transparent;
+    /* font-style: normal; */
+}
+.mid_main_header
+{
+    background: linear-gradient(81deg, #E7F0FF 9.01%, rgba(232, 241, 255, 0.47) 89.11%);
+
+}
