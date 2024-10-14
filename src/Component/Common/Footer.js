@@ -1,13 +1,11 @@
-import { Box, Container, Divider, Grid2, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
+import { Box, Container, Divider, Grid2, List, ListItem, Typography } from '@mui/material'
 import React from 'react'
-
 
 
 import styles from "./Footer.module.css"
 const Footer = () => {
   return (
     <Box className={styles.footer}>
-
       <Container>
         <Box>
           <Grid2 container spacing={2}>

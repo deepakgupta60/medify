@@ -69,7 +69,7 @@ const CentreCard = ({ name, address, city, state, rating, centre, handleAppointm
                     <Typography variant="p" component="p">
                         Available Today
                     </Typography>
-                    <Button variant='contained' onClick={() => handleAppointment(centre)}>Learn More</Button>
+                    <Button variant='contained' onClick={() => handleAppointment(centre)}>Book FREE Center Visit</Button>
                 </CardActions>
             </Card>
 

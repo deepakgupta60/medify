@@ -67,7 +67,7 @@ const HomeSearch = () => {
           <Box sx={{ background: "white", borderRadius: "10px" }}>
 
 
-            <Box sx={{ display: "flex", justifyContent: "space-around", flexDirection: "row" }}>
+            <Box sx={{ display: "flex", zIndex:"99999", position:"relative",  justifyContent: "space-around", flexDirection: "row" }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">State</InputLabel>
                 <Select
