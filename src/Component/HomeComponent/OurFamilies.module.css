@@ -1,0 +1,14 @@
+.our_families{
+    background: linear-gradient(81deg, #E7F0FF 9.01%, rgba(232, 241, 255, 0.47) 89.11%);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.family_card
+{
+    background-color: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
+
+}

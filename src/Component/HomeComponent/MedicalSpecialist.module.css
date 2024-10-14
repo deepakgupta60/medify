@@ -1,0 +1,30 @@
+
+.medical_specialist{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* for card outer */
+.doctor_card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* for image section */
+.doctor_card_image{
+    background: linear-gradient(144.2deg, #E1F3FF 0%, #2AA7FF 100%);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+

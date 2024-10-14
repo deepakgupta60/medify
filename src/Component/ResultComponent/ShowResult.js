@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const CentreCard = ({ name, address, city, state, rating, centreId, handleAppointment, selectedCentre, handleTabChange, activeTab, handleTimeSlots }) => {
+const CentreCard = ({ name, address, city, state, rating, centre, handleAppointment, selectedCentre, handleTabChange, activeTab, handleTimeSlots }) => {
 
 
     const TimeSlots = () => {
@@ -69,15 +69,13 @@ const CentreCard = ({ name, address, city, state, rating, centreId, handleAppoin
                     <Typography variant="p" component="p">
                         Available Today
                     </Typography>
-                    <Button variant='contained' onClick={() => handleAppointment(centreId)}>Learn More</Button>
+                    <Button variant='contained' onClick={() => handleAppointment(centre)}>Learn More</Button>
                 </CardActions>
             </Card>
 
             {
-                selectedCentre === centreId && (
+                selectedCentre === centre["Province ID"] && (
                     <>
-
-
                         <Tabs value={activeTab} onChange={handleTabChange}>
                             <Tab label="Today" />
                             <Tab label="Tommorow" />
@@ -88,8 +86,6 @@ const CentreCard = ({ name, address, city, state, rating, centreId, handleAppoin
                             <Tab label="Fri, 9 May" />
                         </Tabs>
 
-
-
                         {activeTab === 0 && <TimeSlots />}
                         {activeTab === 1 && <TimeSlots />}
                         {activeTab === 2 && <TimeSlots />}
@@ -97,49 +93,6 @@ const CentreCard = ({ name, address, city, state, rating, centreId, handleAppoin
                         {activeTab === 4 && <TimeSlots />}
                         {activeTab === 5 && <TimeSlots />}
                         {activeTab === 6 && <TimeSlots />}
-
-
-                        {/* 
-                        <div>
-
-                            <Typography>Available Time</Typography>
-                            <Button onClick={() => handleTabChange('today')} > Today</Button>
-                            <Button onClick={() => handleTabChange('tommorow')} > Tommorow</Button>
-                            <Button onClick={() => handleTabChange('aftertomm')} > After Tommorow</Button>
-
-                        </div> 
-                        */}
-
-
-
-
-                        {/* <div>
-                            {activeTab === "today" && (
-                                <div>
-                                    <button onClick={() => handleTimeSlots('10:00 AM')}>10:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                </div>
-                            )}
-
-                            {activeTab === "tommorow" && (
-                                <div>
-                                    <button onClick={() => handleTimeSlots('10:00 AM')}>20:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                </div>
-                            )}
-
-                            {activeTab === "aftertomm" && (
-                                <div>
-                                    <button onClick={() => handleTimeSlots('10:00 AM')}>3:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                    <button onClick={() => handleTimeSlots('11:00 AM')}>11:00 AM</button>
-                                </div>
-                            )}
-                        </div> */}
-
-
                     </>
                 )
             }
@@ -154,7 +107,10 @@ const ShowResult = () => {
 
     // for appointment related code
 
-    const [selectedCentre, setSelectedCentre] = useState([])
+    const [selectedCentre, setSelectedCentre] = useState('')
+
+    const [selectedCentreData, setSelectedCentreData] = useState([])
+
     const [activeTab, setActiveTab] = useState(0)
 
 
@@ -169,9 +125,13 @@ const ShowResult = () => {
 
 
 
-    const handleAppointment = (centerId) => {
-        setSelectedCentre(centerId)
-        console.log("center id: ", centerId)
+    const handleAppointment = (centre) => {
+
+        setSelectedCentre(centre["Province ID"])
+
+        setSelectedCentreData(centre)
+
+        console.log("center id: ", centre)
     }
 
     // const handleTabChange = (day) => {
@@ -187,7 +147,7 @@ const ShowResult = () => {
         if (window.confirm("Are you booking")) {
             localStorage.clear('state')
             localStorage.clear('city')
-            navigate('/confirmation', { state: {time, selectedCentre}  })
+            navigate('/confirmation', { state: {time, selectedCentreData, activeTab}  })
 
         }
     }
@@ -204,7 +164,19 @@ const ShowResult = () => {
 
                     return (
                         <Box >
-                            <CentreCard name={data["Hospital Name"]} handleTabChange={handleTabChange} activeTab={activeTab} centreId={data["Provider ID"]} address={data["Address"]} city={data["City"]} selectedCentre={selectedCentre} state={data["State"]} zip={data["ZIP Code"]} rating={data["Hospital overall rating"]} handleAppointment={handleAppointment} handleTimeSlots={handleTimeSlots} />
+                            <CentreCard 
+                            name={data["Hospital Name"]} 
+                            handleTabChange={handleTabChange} 
+                            activeTab={activeTab} 
+                            centre={data} 
+                            address={data["Address"]} 
+                            city={data["City"]} 
+                            selectedCentre={selectedCentre} 
+                            state={data["State"]} 
+                            zip={data["ZIP Code"]} 
+                            rating={data["Hospital overall rating"]} 
+                            handleAppointment={handleAppointment} 
+                            handleTimeSlots={handleTimeSlots} />
                         </Box>
                     )
                 }) : <p>Not Found</p>}

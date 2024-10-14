@@ -34,11 +34,7 @@ const HeroSection = () => {
                         </Box>
                     </Box>
                 </Box>
-
-
-
-<HomeSearch/>
-
+               
             </Container>
         </Box>
     )

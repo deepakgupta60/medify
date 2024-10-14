@@ -1,9 +1,11 @@
-import { Box, Button } from '@mui/material'
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Typography } from '@mui/material'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import { LocationContext } from '../../LocationProvider'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
+import styles from "./HomeSearch.module.css"
 
 const HomeSearch = () => {
 
@@ -42,55 +44,89 @@ const HomeSearch = () => {
     localStorage.setItem("city", selectCity)
   }
 
-  const handleSearch=()=>{
-    if(selectedState && selectedCity)
-    {
+  const handleSearch = () => {
+    if (selectedState && selectedCity) {
       navigate("/result")
     }
+
+  }
+
+  const HomeCard = ({ img, text }) => {
+    return (<>
+      <Card sx={{ width: "100px", boxShadow: "none", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", "&:hover": { background: "#2AA7FF", borderRadius: "5px" }, padding: "50px" }}>
+        <CardMedia sx={{ width: "50px" }} image='/Resources/card_icon.png' component={"img"} />
+        <Typography variant='p' sx={{ paddingTop: "10px" }} component={"p"}>{text}</Typography>
+      </Card>
+    </>)
   }
   return (
     <>
-      <Box sx={{ backgroundColor: "white", marginTop: "-150px", position: "relative", zIndex: "999", padding: "20px" }} >
+      <Box className={styles.home_search}>
+        <Container>
 
-        <Box sx={{ display: "flex", justifyContent: "space-around", flexDirection: "row" }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">State</InputLabel>
-            <Select
-              value={selectedState}
-              label="State"
-              onChange={handleStateChange}
+          <Box sx={{ background: "white", borderRadius: "10px" }}>
 
-            >
 
-              {
-                stateData.length > 0 ? stateData.map((data, idx) => (
-                  <MenuItem key={idx} value={data}>{data}</MenuItem>
-                )) : <MenuItem>No State Found</MenuItem>
-              }
-            </Select>
-          </FormControl>
+            <Box sx={{ display: "flex", justifyContent: "space-around", flexDirection: "row" }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">State</InputLabel>
+                <Select
+                  value={selectedState}
+                  label="State"
+                  onChange={handleStateChange}
 
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">City</InputLabel>
+                >
 
-            <Select
-              value={selectedCity}
-              label="City"
-              onChange={handleCityChange}
-            >
+                  {
+                    stateData.length > 0 ? stateData.map((data, idx) => (
+                      <MenuItem key={idx} value={data}>{data}</MenuItem>
+                    )) : <MenuItem>No State Found</MenuItem>
+                  }
+                </Select>
+              </FormControl>
 
-              {
-                cityData.length > 0 ? cityData.map((data, idx) => (
-                  <MenuItem key={idx} value={data}>{data}</MenuItem>
-                )) : <MenuItem>No City Found</MenuItem>
-              }
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">City</InputLabel>
 
-            </Select>
-          </FormControl>
+                <Select
+                  value={selectedCity}
+                  label="City"
+                  onChange={handleCityChange}
+                >
 
-          <Button variant='contained' onClick={handleSearch}>Search</Button>
+                  {
+                    cityData.length > 0 ? cityData.map((data, idx) => (
+                      <MenuItem key={idx} value={data}>{data}</MenuItem>
+                    )) : <MenuItem>No City Found</MenuItem>
+                  }
 
-        </Box>
+                </Select>
+              </FormControl>
+
+              <Button variant='contained' onClick={handleSearch}>Search</Button>
+
+            </Box>
+
+
+
+            <Box sx={{ marginTop: "20px" }}>
+              <Typography sx={{ textAlign: "center" }}>You may be looking for</Typography>
+
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "row" }}>
+
+                <HomeCard img={""} text={"Doctors"} />
+                <HomeCard img={""} text={"Labs"} />
+                <HomeCard img={""} text={"Hospitals"} />
+                <HomeCard img={""} text={"Medical Store"} />
+                <HomeCard img={""} text={"Ambulance"} />
+
+
+              </Box>
+            </Box>
+          </Box>
+        </Container>
+
+
       </Box>
     </>
   )
