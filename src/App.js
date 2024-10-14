@@ -5,6 +5,7 @@ import Header from './Component/Common/Header';
 import Result from './Pages/Result';
 import Confirmed from './Pages/Confirmed';
 import Test from './Test';
+import Footer from './Component/Common/Footer';
 
 function App() {
   
@@ -21,6 +22,8 @@ function App() {
       <Route path='/confirmation' element={<Confirmed/>} />
       <Route path='/test' element={<Test/>}/>
     </Routes>
+
+    <Footer/>
     </>
   );
 }
